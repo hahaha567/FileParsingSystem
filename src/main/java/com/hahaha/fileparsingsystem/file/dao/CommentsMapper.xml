@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hahaha.fileparsingsystem.file.dao.CommentsMapper">
+    
+    <insert id="insert" parameterType="com.hahaha.fileparsingsystem.file.entity.Comment">
+        insert into comments(user_id, file_id, create_time, content)
+        values (#{userId}, #{fileId}, #{createTime}, #{content})
+    </insert>
+
+</mapper>

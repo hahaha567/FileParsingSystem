@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hahaha.fileparsingsystem.file.dao.FileMapper">
+
+    
+    <insert id="insert">
+        insert into files(user_id, filename, store_path, create_time, update_time)
+        values (#{userId}, #{fileName}, #{storePath}, #{createTime}, #{updateTime})
+    </insert>
+
+    <select id="getFileById" resultType="com.hahaha.fileparsingsystem.file.entity.FileRecord">
+        select id, user_id as userId, filename as fileName, store_path as storePath,
+               create_time as creteTime, update_time as updateTime
+               from files
+               where id = #{id}
+    </select>
+
+    <select id="getUserIdById" resultType="java.lang.Long">
+        select user_id from files where id = #{id}
+    </select>
+
+    <update id="updateFile">
+        update files set update_time = #{updateTime} where id = #{id}
+    </update>
+
+    <delete id="deleteFile">
+        delete from files where id = #{id}
+    </delete>
+
+</mapper>

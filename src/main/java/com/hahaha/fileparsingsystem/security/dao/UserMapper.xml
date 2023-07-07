@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hahaha.fileparsingsystem.security.dao.UserMapper">
+<!--    <select id="getUserByName" resultType="com.daimalu.pojo.User">-->
+<!--        select u.id, u.username, u.password, r.name from users as u-->
+<!--               inner join users_roles as ur, roles as r-->
+<!--               on u.id = ur.user_id and r.id = ur.role_id and u.username = #{username}-->
+<!--    </select>-->
+
+    <select id="getUserByName" resultType="com.hahaha.fileparsingsystem.security.entity.User">
+        select id, username, password from users where username = #{userName}
+    </select>
+    
+    <insert id="insert">
+        insert into users(username, password, create_time, update_time)
+        values (#{userName}, #{passWord}, #{createTime}, #{updateTime})
+    </insert>
+
+    <select id="getIdByName" resultType="java.lang.Long">
+        select id from users where username = #{userName}
+    </select>
+
+</mapper>
