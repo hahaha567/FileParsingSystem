@@ -1,6 +1,7 @@
 package com.hahaha.fileparsingsystem.file.mq;
 
 import com.hahaha.fileparsingsystem.file.config.RabbitMQConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,11 +13,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * @Description
+ * @Description 消息队列的消费者
  * @Author hahaha567
  * @Date 2023/6/19 17:10
  */
 
+@Slf4j
 @Service
 public class MQReceiver {
 
@@ -63,5 +65,16 @@ public class MQReceiver {
         );
         bufferedOutputStream.write(updateMessage.getMultipartFile().getBytes());
         bufferedOutputStream.close();
+    }
+
+    /**
+     * @Description 处理死信队列中的消息
+     * @Date 20:37 2023/7/9
+     * @Param [message]
+     * @return void
+     **/
+    @RabbitListener(queues = RabbitMQConfiguration.DEAD_QUEUE)
+    public void receiveDead(Object message) throws IOException {
+        log.info("消息处理失败：" + message);
     }
 }

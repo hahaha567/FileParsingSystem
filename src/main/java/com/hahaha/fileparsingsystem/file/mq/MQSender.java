@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.security.Principal;
 
 /**
- * @Description
+ * @Description 消息队列的生产者
  * @Author hahaha567
  * @Date 2023/6/19 17:11
  */
